@@ -1,0 +1,1 @@
+import{d as t,o as s,u as r,e as n,b as a}from"./index-BNrTNN_G.js";import{a as c}from"./useAuthStore-_tuJDpGE.js";import"./authSession-B9XMzx9Z.js";import"./api-error-C1silz_M.js";const u={style:{display:"none"}},h=t({__name:"LogoutHandler",setup(p){const e=r(),o=c();return s(()=>{o.clearSession(),e.replace("/access-denied")}),(i,d)=>(a(),n("div",u))}});export{h as default};
