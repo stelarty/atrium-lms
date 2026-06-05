@@ -1,0 +1,1 @@
+import{r,k as n,o as a,Y as d}from"./index-Ax64nEzO.js";const w=()=>{const e=r(window.innerWidth),o=n(()=>e.value<768),s=n(()=>e.value>=768&&e.value<1024),i=n(()=>e.value>=1024),t=()=>{e.value=window.innerWidth};return a(()=>{window.addEventListener("resize",t)}),d(()=>{window.removeEventListener("resize",t)}),{width:e,isMobile:o,isTablet:s,isDesktop:i}};export{w as u};

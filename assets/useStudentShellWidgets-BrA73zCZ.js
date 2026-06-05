@@ -1,0 +1,1 @@
+import{k as r,l as s}from"./index-Ax64nEzO.js";function n(){const e=s();return r(()=>{if(typeof window<"u"&&localStorage.getItem("role")!=="student")return!1;const t=e.path;return!(!t.startsWith("/student")||t.startsWith("/student/profile"))})}export{n as u};
