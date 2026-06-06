@@ -30,11 +30,13 @@
             <BaseInput v-model="searchQuery" class="program__search" type="search" placeholder="Поиск..." />
           </div>
 
-          <WidgetSegmentControl v-model="scheduleFilter" :tabs="scheduleTabs" />
+          <div class="program__filters">
+            <WidgetSegmentControl v-model="scheduleFilter" :tabs="scheduleTabs" />
 
-          <div v-if="hasDifficultyLevels" class="program__difficulty">
-            <span class="program__difficulty-label">Уровень</span>
-            <WidgetSegmentControl v-model="activeDifficultyLevel" :tabs="difficultyTabs" />
+            <div v-if="hasDifficultyLevels" class="program__difficulty">
+              <span class="program__difficulty-label">Уровень</span>
+              <WidgetSegmentControl v-model="activeDifficultyLevel" :tabs="difficultyTabs" />
+            </div>
           </div>
 
           <Transition name="fade" mode="out-in">

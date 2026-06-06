@@ -96,6 +96,13 @@
     }
   }
 
+  &__filters {
+    display: flex;
+    align-items: center;
+    gap: $m6;
+    flex-wrap: wrap;
+  }
+
   &__difficulty {
     display: flex;
     align-items: center;
