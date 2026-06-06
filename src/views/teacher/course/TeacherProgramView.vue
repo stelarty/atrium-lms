@@ -30,14 +30,16 @@
           </p>
 
           <template v-else-if="activePart">
+            <WidgetSegmentControl v-model="scheduleFilter" :tabs="scheduleTabs" />
+
             <div v-if="hasDifficultyLevels" class="program__difficulty">
               <span class="program__difficulty-label">Уровень</span>
               <WidgetSegmentControl v-model="activeDifficultyLevel" :tabs="difficultyTabs" />
             </div>
 
             <Transition name="fade" mode="out-in">
-              <ProgramLessonList v-if="!showLessonsEmptyState && !showFilteredLessonsEmpty && !showSearchEmptyState"
-                key="lessons" :lessons="searchedLessonsForActivePart" :pastLessons="searchedPastLessonsForActivePart"
+              <ProgramLessonList v-if="!showLessonsEmptyState && !showFilteredLessonsEmpty && !showSearchEmptyState && !showScheduleFilterEmpty"
+                key="lessons" :lessons="visibleLessons" :pastLessons="visiblePastLessons"
                 :isLoading="showLessonsSkeleton" showEditIcon @select="handleSelectLesson" />
 
               <EmptyCreateFirst v-else-if="showLessonsEmptyState || showFilteredLessonsEmpty" key="empty"
@@ -51,6 +53,9 @@
               </EmptyCreateFirst>
 
               <EmptyNoResults v-else-if="showSearchEmptyState" key="no-results" title="Результатов не найдено" />
+
+              <EmptyCreateFirst v-else-if="showScheduleFilterEmpty" key="schedule-empty"
+                :title="scheduleFilterEmptyTitle" subtitle="Попробуйте выбрать другой фильтр" />
             </Transition>
           </template>
         </template>
@@ -115,6 +120,37 @@ const canEditPart = computed(
   () => displayMode.value === 'custom_sections' && Boolean(activePart.value),
 )
 
+type ScheduleFilter = 'all' | 'upcoming' | 'past'
+
+const scheduleFilter = ref<ScheduleFilter>('all')
+
+const scheduleTabs = [
+  { id: 'all', label: 'Все' },
+  { id: 'upcoming', label: 'Предстоящие' },
+  { id: 'past', label: 'Прошедшие' },
+]
+
+const visibleLessons = computed(() =>
+  scheduleFilter.value === 'past' ? [] : searchedLessonsForActivePart.value,
+)
+
+const visiblePastLessons = computed(() =>
+  scheduleFilter.value === 'upcoming' ? [] : searchedPastLessonsForActivePart.value,
+)
+
+const showScheduleFilterEmpty = computed(
+  () =>
+    !showLessonsSkeleton.value &&
+    scheduleFilter.value !== 'all' &&
+    !showLessonsEmptyState.value &&
+    visibleLessons.value.length === 0 &&
+    visiblePastLessons.value.length === 0,
+)
+
+const scheduleFilterEmptyTitle = computed(() =>
+  scheduleFilter.value === 'upcoming' ? 'Нет предстоящих занятий' : 'Нет прошедших занятий',
+)
+
 const programNotice = ref<string | null>(null)
 
 const setProgramNotice = (message: string | null): void => {
@@ -124,6 +160,7 @@ const setProgramNotice = (message: string | null): void => {
 
 const handleSelectPart = (part: { id: number | string; title: string }): void => {
   setProgramNotice(null)
+  scheduleFilter.value = 'all'
   setActivePart(part as (typeof parts.value)[number] | null)
 }
 
