@@ -8,17 +8,10 @@
 
       <div v-else key="lessons" class="program-lesson-list__group">
         <!-- Upcoming section header -->
-        <div ref="upcomingRef" class="program-lesson-list__section-header">
+        <div class="program-lesson-list__section-header">
           <h3 class="program-lesson-list__section-title program-lesson-list__section-title--upcoming">
             Предстоящие занятия
           </h3>
-          <button
-            v-if="pastLessons.length > 0"
-            class="program-lesson-list__scroll-btn"
-            @click="scrollTo(pastRef)"
-          >
-            Прошедшие ›
-          </button>
         </div>
 
         <WidgetLessonCard
@@ -35,17 +28,11 @@
         />
 
         <template v-if="pastLessons.length > 0">
-          <!-- Past section header (with dino) -->
-          <div ref="pastRef" class="program-lesson-list__section-header program-lesson-list__section-header--past">
+          <!-- Past section header -->
+          <div ref="pastRef" class="program-lesson-list__section-header">
             <h3 class="program-lesson-list__section-title program-lesson-list__section-title--past">
               Прошедшие занятия
             </h3>
-            <button
-              class="program-lesson-list__scroll-btn"
-              @click="scrollTo(upcomingRef)"
-            >
-              Предстоящие ›
-            </button>
           </div>
 
           <WidgetLessonCard
@@ -96,12 +83,7 @@ const emit = defineEmits<{
   (e: 'select', lesson: ProgramLessonListItem): void
 }>()
 
-const upcomingRef = ref<HTMLElement | null>(null)
 const pastRef = ref<HTMLElement | null>(null)
-
-function scrollTo(el: HTMLElement | null): void {
-  el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-}
 
 defineExpose({ pastRef })
 </script>
@@ -114,12 +96,7 @@ defineExpose({ pastRef })
 }
 
 .program-lesson-list__section-header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: $m4;
   padding-top: 20px;
-
 }
 
 .program-lesson-list__section-title {
@@ -137,27 +114,6 @@ defineExpose({ pastRef })
   }
 }
 
-.program-lesson-list__scroll-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  @include font-body-button();
-  color: $text-default-accent;
-  white-space: nowrap;
-  justify-self: end;
-
-  &:hover {
-    color: $text-hover-accent;
-  }
-
-  &:active {
-    color: $text-pressed-accent;
-  }
-}
 
 .program-lesson-list__item--past :deep(.widget-lesson-card__title) {
   color: $text-default-secondary;
