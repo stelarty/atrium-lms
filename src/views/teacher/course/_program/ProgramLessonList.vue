@@ -1,7 +1,7 @@
 <template>
   <div class="program-lesson-list">
     <Transition name="slide" mode="out-in">
-      <div v-if="showSkeleton" key="skeleton" class="program-lesson-list__group">
+      <div v-if="isLoading" key="skeleton" class="program-lesson-list__group">
         <Skeleton v-for="i in 2" :key="i" type="rect" size="full" height="120" animated variant="light" />
       </div>
 
@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref } from 'vue'
 import WidgetLessonCard from '@/components/widgets/WidgetLessonCard.vue'
 import Skeleton from '@/components/ui/Skeleton.vue'
 
@@ -65,7 +65,7 @@ interface ProgramLessonListItem {
   status?: 'live' | 'upcoming' | null
 }
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     lessons: ProgramLessonListItem[]
     pastLessons?: ProgramLessonListItem[]
@@ -81,21 +81,6 @@ const props = withDefaults(
 const emit = defineEmits<{
   (e: 'select', lesson: ProgramLessonListItem): void
 }>()
-
-const isTransitioning = ref(false)
-let transitionTimer: ReturnType<typeof setTimeout> | null = null
-
-watch(
-  () => [props.lessons, props.pastLessons],
-  () => {
-    if (transitionTimer) clearTimeout(transitionTimer)
-    isTransitioning.value = true
-    transitionTimer = setTimeout(() => { isTransitioning.value = false }, 800)
-  },
-  { flush: 'sync' },
-)
-
-const showSkeleton = computed(() => props.isLoading || isTransitioning.value)
 
 const pastRef = ref<HTMLElement | null>(null)
 
