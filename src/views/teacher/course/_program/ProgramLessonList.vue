@@ -7,25 +7,27 @@
       </div>
 
       <div v-else key="lessons" class="program-lesson-list__group">
-        <!-- Upcoming section header -->
-        <div class="program-lesson-list__section-header">
-          <h3 class="program-lesson-list__section-title program-lesson-list__section-title--upcoming">
-            Предстоящие занятия
-          </h3>
-        </div>
+        <template v-if="lessons.length > 0">
+          <!-- Upcoming section header -->
+          <div class="program-lesson-list__section-header">
+            <h3 class="program-lesson-list__section-title program-lesson-list__section-title--upcoming">
+              Предстоящие занятия
+            </h3>
+          </div>
 
-        <WidgetLessonCard
-          v-for="lesson in lessons"
-          :key="`upcoming-${lesson.id}`"
-          class="program-lesson-list__item"
-          interactive
-          :title="lesson.title"
-          :date="lesson.starts_at_label"
-          :showEditIcon="showEditIcon"
-          :status="lesson.status"
-          @click="emit('select', lesson)"
-          @activate="emit('select', lesson)"
-        />
+          <WidgetLessonCard
+            v-for="lesson in lessons"
+            :key="`upcoming-${lesson.id}`"
+            class="program-lesson-list__item"
+            interactive
+            :title="lesson.title"
+            :date="lesson.starts_at_label"
+            :showEditIcon="showEditIcon"
+            :status="lesson.status"
+            @click="emit('select', lesson)"
+            @activate="emit('select', lesson)"
+          />
+        </template>
 
         <template v-if="pastLessons.length > 0">
           <!-- Past section header -->
