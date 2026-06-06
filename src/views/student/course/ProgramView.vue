@@ -46,7 +46,6 @@
               key="lessons"
               :lessons="visibleLessons"
               :pastLessons="visiblePastLessons"
-              :isLoading="isSwitching"
               @select="handleSelectLesson"
             />
 
@@ -136,14 +135,6 @@ const {
 } = useStudentProgram(currentCourseId)
 
 const scheduleFilter = ref('all')
-const isSwitching = ref(false)
-let switchTimer: ReturnType<typeof setTimeout> | null = null
-
-watch(scheduleFilter, () => {
-  if (switchTimer) clearTimeout(switchTimer)
-  isSwitching.value = true
-  switchTimer = setTimeout(() => { isSwitching.value = false }, 800)
-}, { flush: 'sync' })
 
 const scheduleTabs = [
   { id: 'all', label: 'Все' },
@@ -162,7 +153,6 @@ const visiblePastLessons = computed(() =>
 const showScheduleFilterEmpty = computed(
   () =>
     !showProgramSkeleton.value &&
-    !isSwitching.value &&
     scheduleFilter.value !== 'all' &&
     !showLessonsEmptyState.value &&
     visibleLessons.value.length === 0 &&

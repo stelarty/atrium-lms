@@ -42,7 +42,7 @@
             <Transition name="fade" mode="out-in">
               <ProgramLessonList v-if="!showLessonsEmptyState && !showFilteredLessonsEmpty && !showSearchEmptyState && !showScheduleFilterEmpty"
                 key="lessons" :lessons="visibleLessons" :pastLessons="visiblePastLessons"
-                :isLoading="showLessonsSkeleton || isSwitching" showEditIcon @select="handleSelectLesson" />
+                :isLoading="showLessonsSkeleton" showEditIcon @select="handleSelectLesson" />
 
               <EmptyCreateFirst v-else-if="showLessonsEmptyState || showFilteredLessonsEmpty" key="empty"
                 title="Занятий пока нет" subtitle="Давайте создадим первое занятие">
@@ -125,14 +125,6 @@ const canEditPart = computed(
 type ScheduleFilter = 'all' | 'upcoming' | 'past'
 
 const scheduleFilter = ref<ScheduleFilter>('all')
-const isSwitching = ref(false)
-let switchTimer: ReturnType<typeof setTimeout> | null = null
-
-watch(scheduleFilter, () => {
-  if (switchTimer) clearTimeout(switchTimer)
-  isSwitching.value = true
-  switchTimer = setTimeout(() => { isSwitching.value = false }, 800)
-}, { flush: 'sync' })
 
 const scheduleTabs = [
   { id: 'all', label: 'Все' },
@@ -151,7 +143,6 @@ const visiblePastLessons = computed(() =>
 const showScheduleFilterEmpty = computed(
   () =>
     !showLessonsSkeleton.value &&
-    !isSwitching.value &&
     scheduleFilter.value !== 'all' &&
     !showLessonsEmptyState.value &&
     visibleLessons.value.length === 0 &&

@@ -1,14 +1,12 @@
 <template>
   <div class="program-lesson-list">
-
     <Transition name="slide" mode="out-in">
-      <div v-if="isLoading" key="skeleton" class="program-lesson-list__group">
-        <Skeleton v-for="i in 2" :key="i" type="rect" size="full" height="120" animated variant="light"/>
+      <div v-if="showSkeleton" key="skeleton" class="program-lesson-list__group">
+        <Skeleton v-for="i in 2" :key="i" type="rect" size="full" height="120" animated variant="light" />
       </div>
 
       <div v-else key="lessons" class="program-lesson-list__group">
         <template v-if="lessons.length > 0">
-          <!-- Upcoming section header -->
           <div class="program-lesson-list__section-header">
             <h3 class="program-lesson-list__section-title program-lesson-list__section-title--upcoming">
               Предстоящие занятия
@@ -30,7 +28,6 @@
         </template>
 
         <template v-if="pastLessons.length > 0">
-          <!-- Past section header -->
           <div ref="pastRef" class="program-lesson-list__section-header">
             <h3 class="program-lesson-list__section-title program-lesson-list__section-title--past">
               Прошедшие занятия
@@ -56,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import WidgetLessonCard from '@/components/widgets/WidgetLessonCard.vue'
 import Skeleton from '@/components/ui/Skeleton.vue'
 
@@ -68,7 +65,7 @@ interface ProgramLessonListItem {
   status?: 'live' | 'upcoming' | null
 }
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     lessons: ProgramLessonListItem[]
     pastLessons?: ProgramLessonListItem[]
@@ -84,6 +81,21 @@ withDefaults(
 const emit = defineEmits<{
   (e: 'select', lesson: ProgramLessonListItem): void
 }>()
+
+const isTransitioning = ref(false)
+let transitionTimer: ReturnType<typeof setTimeout> | null = null
+
+watch(
+  () => [props.lessons, props.pastLessons],
+  () => {
+    if (transitionTimer) clearTimeout(transitionTimer)
+    isTransitioning.value = true
+    transitionTimer = setTimeout(() => { isTransitioning.value = false }, 800)
+  },
+  { flush: 'sync' },
+)
+
+const showSkeleton = computed(() => props.isLoading || isTransitioning.value)
 
 const pastRef = ref<HTMLElement | null>(null)
 
@@ -115,7 +127,6 @@ defineExpose({ pastRef })
     color: $text-default-warning;
   }
 }
-
 
 .program-lesson-list__item--past :deep(.widget-lesson-card__title) {
   color: $text-default-secondary;
