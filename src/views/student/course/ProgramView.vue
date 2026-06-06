@@ -143,7 +143,7 @@ watch(scheduleFilter, () => {
   if (switchTimer) clearTimeout(switchTimer)
   isSwitching.value = true
   switchTimer = setTimeout(() => { isSwitching.value = false }, 800)
-})
+}, { flush: 'sync' })
 
 const scheduleTabs = [
   { id: 'all', label: 'Все' },
@@ -162,6 +162,7 @@ const visiblePastLessons = computed(() =>
 const showScheduleFilterEmpty = computed(
   () =>
     !showProgramSkeleton.value &&
+    !isSwitching.value &&
     scheduleFilter.value !== 'all' &&
     !showLessonsEmptyState.value &&
     visibleLessons.value.length === 0 &&
