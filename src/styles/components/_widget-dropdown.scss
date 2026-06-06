@@ -1,0 +1,141 @@
+.widget-dropdown {
+  position: relative;
+
+  &__trigger-wrapper {
+    width: auto;
+    // padding-inline: $m4;
+    border-radius: $m6;
+    cursor: pointer;
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    width: 225px;
+    padding: $m4 0 $m4 $m4;
+    max-height: 300px;
+    overflow-y: scroll;
+    background: $surface-default-primary;
+    border-radius: $m4;
+    box-shadow: $shadow-md;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: $m6;
+
+    &--position-left{
+      left: 0;
+    }
+
+    &--position-right{
+      right: 0;
+    }
+
+    &--teleported {
+      position: fixed;
+      z-index: $z-dropdown;
+      top: 0;
+      left: 0;
+      right: auto;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $surface-hover-secondary;
+      border-radius: 4px;
+      width: 6px;
+    }
+
+    // @supports not selector(::-webkit-scrollbar) {
+    //   & {
+    //     scrollbar-color: red green;
+    //   }
+    // }
+  }
+
+  //   &__group {
+  //     padding-block: $m2;
+  //   }
+
+  &__caption {
+    @include font-body-caption;
+    padding: $m2 $m6;
+    color: $text-default-secondary;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $m4;
+    padding: $m4 $m6;
+    border-radius: $m4;
+    cursor: pointer;
+
+    &:hover:not(.widget-dropdown__item--disabled) {
+      background: $surface-hover-primary;
+    }
+
+    &:active:not(.widget-dropdown__item--disabled) {
+      background: $surface-pressed-primary;
+    }
+
+    &--chosen {
+      background: $surface-default-colored-surface-additional;
+      color: $text-default-accent;
+    }
+
+    &--disabled {
+      cursor: default;
+      color: $text-disabled-primary;
+    }
+  }
+
+  &__checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__label {
+    flex: 1;
+    white-space: normal; // дефолт
+    overflow: visible;
+    text-overflow: unset;
+    @include font-body-text;
+  }
+
+  &--truncate {
+    .widget-dropdown__panel {
+      width: 100%;
+    }
+    .widget-dropdown__label {
+      @include truncate(2);
+    }
+  }
+
+  &__right-icon {
+    margin-left: auto;
+  }
+
+  &__state {
+    padding: $m4;
+    text-align: center;
+    color: $text-default-secondary;
+  }
+}

@@ -1,0 +1,47 @@
+/* =========================================
+Widget Section Card — LMS Атриум
+========================================= */
+
+.widget-section-card {
+  @include border-radius($m12);
+  @include responsive-prop(padding, ($container-padding-mobile, $container-padding-tablet, null));
+  display: flex;
+  flex-direction: column;
+  gap: $m8; // Глобальный отступ между хедером и контентом
+  background-color: $surface-default-primary;
+  max-width: 454px;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $m2;
+
+    &-top {
+      @include flex-center(row, space-between, center);
+    }
+  }
+
+  &__title {
+    @include font-titles-bodyheader();
+    color: $text-default-primary;
+    margin: 0;
+  }
+
+  &__description {
+    @include font-body-caption();
+    color: $text-default-secondary;
+    margin: 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $m8; // Отступы внутри контента (между полями формы)
+  }
+
+  &--bordered {
+    border: 1px solid $surface-default-stroke;
+    border-radius: $m12;
+  }
+}

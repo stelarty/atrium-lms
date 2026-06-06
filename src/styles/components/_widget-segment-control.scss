@@ -1,0 +1,70 @@
+/* =========================================
+Widget Segment Control — LMS Атриум
+========================================= */
+
+.widget-segment-control {
+  @include flex-center(row, flex-start, center);
+  // @include responsive-prop(width, (auto, fit-content, null));
+  width: 100%;
+  max-width: fit-content;
+  gap: $m2;
+  border-radius: $m4;
+  background-color: $surface-default-secondary;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: $m1;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &__button {
+    @include font-body-button();
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $m2 $m4;
+    background-color: transparent;
+    color: $text-default-secondary;
+    border: none;
+    border-radius: $m3;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    @media (hover: hover) {
+      &:hover:not(&--active):not(:disabled) {
+        background-color: $surface-hover-secondary;
+        color: $text-default-primary;
+      }
+    }
+
+    &--active {
+      background-color: $surface-default-primary;
+      color: $text-default-primary;
+      font-weight: 600;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &--stretch {
+    // width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+
+    .widget-segment-control__button {
+      width: 100%;
+    }
+  }
+}

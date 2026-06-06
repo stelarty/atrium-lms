@@ -1,0 +1,41 @@
+/* =========================================
+   Text Colors
+========================================= */
+
+/* Default */
+$text-default-accent: $accent-500;
+$text-default-danger: $red-500;
+$text-default-label: $neutral-400;
+$text-default-primary: $neutral-1000;
+$text-default-secondary: $neutral-600;
+$text-default-success: $green-500;
+$text-default-tertiary: $neutral-0;
+$text-default-warning: $orange-400;
+
+/* Disabled */
+$text-disabled-accent: $neutral-300;
+$text-disabled-danger: $neutral-300;
+$text-disabled-label: $neutral-300;
+$text-disabled-primary: $neutral-300;
+$text-disabled-secondary: $neutral-300;
+$text-disabled-success: $neutral-300;
+$text-disabled-tertiary: $neutral-300;
+$text-disabled-warning: $neutral-300;
+
+/* Hover */
+$text-hover-accent: $accent-600;
+$text-hover-danger: $red-200;
+$text-hover-danger-accent: $red-600;
+$text-hover-primary: $neutral-900;
+$text-hover-secondary: $neutral-200;
+$text-hover-stroke: $neutral-300;
+$text-hover-tertiary: $neutral-300;
+
+/* Pressed */
+$text-pressed-accent: $accent-700;
+$text-pressed-danger: $red-300;
+$text-pressed-danger-accent: $red-700;
+$text-pressed-primary: $neutral-800;
+$text-pressed-secondary: $neutral-300;
+$text-pressed-stroke: $neutral-400;
+$text-pressed-tertiary: $neutral-0;

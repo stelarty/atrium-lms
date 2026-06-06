@@ -1,0 +1,101 @@
+.widget-courses {
+  @include responsive-prop(
+    padding-block,
+    ($container-padding-mobile, $container-padding-tablet, null)
+  );
+  @include flex-center(column, flex-start, flex-start);
+  @include responsive-prop(gap, ($container-padding-mobile, $container-padding-tablet, null));
+
+  &__heading {
+    @include font-titles-subheader;
+  }
+
+  // &__tabs {
+  //   display: flex;
+  //   gap: $m4;
+  //   margin-bottom: $m10;
+
+  //   .widget-courses__tab {
+  //     padding: $m4 $m8;
+  //     background-color: transparent;
+  //     border: none;
+  //     border-radius: $m4;
+  //     cursor: pointer;
+  //     font-family: inherit;
+  //     font-size: 0.9rem;
+  //     color: $text-default-secondary;
+  //     transition:
+  //       background 0.2s ease,
+  //       color 0.2s ease;
+
+  //     &:hover {
+  //       background-color: $surface-hover-secondary;
+  //       color: $text-default-primary;
+  //     }
+
+  //     &--active {
+  //       background-color: $surface-default-colored-surface-additional;
+  //       color: $text-default-accent;
+  //       font-weight: 600;
+  //     }
+  //   }
+  // }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    gap: $m6;
+    position: relative;
+    border-bottom: 1px solid $surface-default-stroke;
+    padding-block: $m8;
+
+    @include screen-min('md') {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border: 0px;
+    }
+    &:first-child {
+      padding-top: 0;
+    }
+
+    .widget-courses__name {
+      @include font-titles-bodyheader;
+    }
+
+    .widget-courses__access {
+      font-size: 0.875rem;
+
+      // Цветовые модификаторы
+      &--success {
+        color: $text-default-success;
+      }
+
+      &--danger {
+        color: $text-default-danger;
+      }
+
+      &--secondary {
+        color: $text-default-secondary;
+      }
+    }
+
+    .widget-courses__content {
+      display: flex;
+      flex-direction: column;
+      gap: $m3;
+    }
+  }
+}

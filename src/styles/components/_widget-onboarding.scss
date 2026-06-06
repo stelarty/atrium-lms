@@ -1,0 +1,272 @@
+// src/styles/components/_widget-onboarding.scss
+
+.widget-onboarding {
+  background: $surface-default-primary;
+  border-radius: $m8;
+  overflow: hidden;
+  @include border-radius();
+  @include responsive-prop(padding, ($container-padding-mobile, $container-padding-tablet, null));
+
+  &--completed {
+    background-image: url('@/assets/images/onboarding-complete-bg.png');
+    background-position: center -320px;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @include screen-min('md') {
+      background-position: center -400px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: start;
+    justify-content: start;
+    gap: $m12;
+    position: relative;
+    cursor: pointer;
+
+    @include screen-min('md') {
+      flex-direction: row;
+    }
+  }
+
+  &__image-wrapper {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    right: 6vw;
+    bottom: -30px;
+
+    @include screen-min('md') {
+      position: relative;
+      width: 145px;
+      height: 145px;
+      bottom: 0;
+      right: 0;
+    }
+
+    &:not(.widget-onboarding__image-wrapper--completed)::before {
+      content: '';
+      position: absolute;
+      left: -80px;
+      top: 20px;
+      background-image: url('@/assets/images/hello.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100px;
+      height: 48px;
+    }
+
+    &--completed::before {
+      content: '';
+      position: absolute;
+      left: -80px;
+      top: 20px;
+      background-image: url('@/assets/images/all-achive.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100px;
+      height: 80px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: $m4;
+    width: 50%;
+
+    @include screen-min('md') {
+      width: auto;
+    }
+  }
+
+  &__title {
+    @include font-titles-body-subheader;
+    color: $text-default-primary;
+  }
+
+  &__subtitle {
+    @include font-body-text;
+    color: $text-default-secondary;
+  }
+
+  &__toggle,
+  &__close {
+    flex-shrink: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  // === СПИСОК ЗАДАЧ === //
+
+  &__tasks {
+    margin-top: $m8;
+
+    @include screen-min('md') {
+      margin-top: $m12;
+      padding: 0 $m8;
+    }
+  }
+
+  &__checklist {
+    display: flex;
+    align-items: stretch;
+    gap: $m4;
+
+    @include responsive-prop(flex-wrap, (wrap, nowrap, nowrap));
+
+    padding: $m4;
+    background: $surface-default-colored-surface-additional;
+    border-radius: 24px;
+    width: 100%;
+  }
+
+  &__task {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $m4;
+    padding: $m8;
+    width: 100%;
+    flex: 1 1 100%;
+    min-width: 0;
+
+    @include responsive-prop(width, (100%, auto, auto));
+    @include responsive-prop(flex, (1 1 100%, 1 1 0, 1 1 0));
+
+    height: 100px;
+
+    background: $surface-default-primary;
+    border-radius: 16px;
+    box-sizing: border-box;
+
+    &--current {
+      border: 2px solid #606fff;
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      background: #ffffffcc;
+    }
+
+    &--completed {
+      pointer-events: none;
+    }
+  }
+}
+
+// === ЧЕКБОКС === //
+
+.widget-onboarding__checkbox {
+  height: 20px;
+}
+
+// === ТЕКСТ ЗАДАЧИ === //
+
+.widget-onboarding__label {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  @include font-body-text;
+
+  &--default {
+    color: $text-default-primary;
+  }
+
+  &--current {
+    color: $text-default-primary;
+  }
+
+  &--disabled {
+    color: $text-disabled-primary;
+  }
+}
+
+// В свёрнутом состоянии — уменьшаем высоту
+@include screen-min('md') {
+  .widget-onboarding--collapsed {
+    height: 120px;
+
+    .widget-onboarding__image-wrapper {
+      bottom: 14px;
+    }
+  }
+}
+
+.widget-onboarding--collapsed {
+  .widget-onboarding__image-wrapper {
+    &:before {
+      display: none;
+    }
+  }
+}
+
+// === БЕЙДЖИ === //
+
+.widget-onboarding__badge {
+  @include font-body-text;
+  height: 20px;
+
+  &--current,
+  &--next {
+    text-align: left;
+  }
+
+  &--current {
+    color: $text-default-accent;
+  }
+
+  &--next {
+    color: $text-disabled-primary;
+  }
+
+  &--placeholder {
+    // Пустое место, чтобы выровнять текст
+  }
+}
+
+// В развёрнутом — картинка сверху, текст снизу
+.widget-onboarding:not(.widget-onboarding--collapsed) {
+  .widget-onboarding__header {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    .widget-onboarding__text {
+      text-align: center;
+      width: 100%;
+    }
+
+    .widget-onboarding__image-wrapper {
+      position: relative;
+      right: 0;
+      bottom: 0;
+
+      &::before {
+        left: -100px;
+      }
+    }
+  }
+  .widget-onboarding__title {
+    @include font-titles-subheader;
+  }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

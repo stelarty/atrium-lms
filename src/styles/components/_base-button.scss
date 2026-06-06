@@ -1,0 +1,120 @@
+.base-button {
+  @include flex-center();
+  @include font-body-button;
+  padding: $m4; // 8px со всех сторон
+  border-radius: $m5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $m2;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s;
+
+  /* ---------- Тип кнопки ---------- */
+  &--contained {
+    &.base-button--primary {
+      background-color: $surface-default-accent;
+      color: $text-default-tertiary;
+
+      &:hover:not(.base-button--disabled) {
+        background-color: $surface-hover-accent;
+      }
+      &:active:not(.base-button--disabled) {
+        background-color: $surface-pressed-accent;
+      }
+    }
+
+    &.base-button--secondary {
+      background-color: $surface-default-secondary;
+      color: $text-default-primary;
+
+      &:hover:not(.base-button--disabled) {
+        background-color: $surface-hover-secondary;
+      }
+      &:active:not(.base-button--disabled) {
+        background-color: $surface-pressed-secondary;
+      }
+    }
+
+    &.base-button--error {
+      background-color: $surface-default-danger-accent;
+      color: $text-default-tertiary;
+
+      &:hover:not(.base-button--disabled) {
+        background-color: $surface-hover-danger-accent;
+      }
+      &:active:not(.base-button--disabled) {
+        background-color: $surface-pressed-danger-accent;
+      }
+    }
+  }
+
+  &--text {
+    background-color: transparent;
+
+    &.base-button--primary {
+      color: $text-default-accent;
+
+      &:hover:not(.base-button--disabled) {
+        color: $text-hover-accent;
+      }
+      &:active:not(.base-button--disabled) {
+        color: $text-pressed-accent;
+      }
+    } // при желании можно отдельные цвета для text/primary
+    &.base-button--secondary {
+      color: $text-default-primary;
+
+      &:hover:not(.base-button--disabled) {
+        color: $text-hover-primary;
+      }
+      &:active:not(.base-button--disabled) {
+        color: $text-pressed-primary;
+      }
+    }
+    &.base-button--error {
+      color: $text-default-danger;
+
+      &:hover:not(.base-button--disabled) {
+        color: $text-hover-danger-accent;
+      }
+      &:active:not(.base-button--disabled) {
+        color: $text-pressed-danger-accent;
+      }
+    }
+  }
+
+  &--disabled {
+    &.base-button--text {
+      cursor: not-allowed;
+      pointer-events: none;
+      color: $text-disabled-primary;
+    }
+
+    &.base-button--contained {
+      background-color: $surface-disabled-accent;
+      cursor: not-allowed;
+      pointer-events: none;
+      color: $text-disabled-primary;
+    }
+  }
+
+  &--full{
+    width: 100%;
+  }
+
+  &--fit{
+    width: fit-content;
+  }
+
+  &--adaptive{
+    width: 100%;
+    @include screen-min('md') {
+      width: fit-content;
+    }
+  }
+}

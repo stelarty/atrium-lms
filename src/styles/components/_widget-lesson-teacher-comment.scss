@@ -1,0 +1,17 @@
+@import '@/styles/components/lesson-teacher-comment';
+
+.widget-lesson-teacher-comment {
+  display: flex;
+  flex-direction: column;
+  gap: $m8;
+  width: 100%;
+
+  :deep(.base-textarea__inner) {
+    min-height: 220px;
+    align-items: stretch;
+  }
+
+  :deep(.base-textarea__control) {
+    min-height: 196px;
+  }
+}

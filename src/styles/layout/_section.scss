@@ -1,0 +1,27 @@
+// src/styles/layout/_section.scss
+
+.section {
+  background-color: $surface-default-primary;
+  // overflow: hidden;
+
+  @include border-radius($m12);
+
+  @include responsive-prop(
+    padding,
+    ($container-padding-mobile, $container-padding-tablet, null)
+  );
+
+  &--no-bg {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  &--no-padding {
+    padding: 0;
+  }
+
+  &--overflow-hidden {
+    overflow: hidden;
+  }
+}

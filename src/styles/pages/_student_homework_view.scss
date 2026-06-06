@@ -1,0 +1,86 @@
+.student-homework-view {
+  width: 100%;
+
+  &__state {
+    @include flex-center(column);
+    gap: $m6;
+    min-height: 240px;
+    text-align: center;
+  }
+
+  &__state-title {
+    @include font-titles-bodyheader;
+    color: $text-default-primary;
+  }
+
+  &__state-text {
+    @include font-body-text;
+    color: $text-default-secondary;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    @include responsive-prop(gap, ($m8, $m12, null));
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $m6;
+  }
+
+  &__filters {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    @include screen-min('md') {
+      overflow: visible;
+    }
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__banner {
+    width: 100%;
+  }
+
+  &__cards-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: $m4;
+  }
+
+  &__groups {
+    display: flex;
+    flex-direction: column;
+    gap: $m8;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: $m4;
+  }
+
+  &__group-title {
+    @include font-titles-body-subheader;
+    color: $text-default-secondary;
+  }
+
+  &__submit-error {
+    @include font-body-caption;
+    color: $text-default-danger;
+  }
+
+  &__file-input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,18 @@
+/* =========================================
+   Shadows (Design Tokens)
+========================================= */
+
+$shadow-sm: (
+  0px 1px 3px 0px rgba(80, 86, 94, 0.12),
+);
+
+$shadow-md: (
+  0px 4px 5px 0px rgba(80, 86, 94, 0.12),
+  0px 2px 18px 0px rgba(80, 86, 94, 0.12),
+  0px 6px 10px 0px rgba(80, 86, 94, 0.02),
+);
+
+$shadow-lg: (
+  0px 8px 24px 0px rgba(80, 86, 94, 0.16),
+  0px 4px 12px 0px rgba(80, 86, 94, 0.08),
+);

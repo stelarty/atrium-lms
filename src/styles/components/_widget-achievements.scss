@@ -1,0 +1,105 @@
+/* =========================================
+Widget Achievements — LMS Атриум
+========================================= */
+// src/styles/components/_widget-achievements.scss
+
+.widget-achievements {
+  position: relative;
+
+  @include responsive-prop(
+    padding-block,
+    ($container-padding-mobile, $container-padding-tablet, null)
+  );
+  @include flex-center(column, center, stretch);
+  @include responsive-prop(gap, ($container-padding-mobile, $container-padding-tablet, null));
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(to left, white 0%, transparent 100%);
+    z-index: 1;
+  }
+}
+
+.widget-achievements__heading {
+  color: $text-default-primary;
+
+  @include font-titles-subheader;
+  @include responsive-prop(
+    padding-inline,
+    ($container-padding-mobile, $container-padding-tablet, null)
+  );
+}
+
+// === КАРУСЕЛЬ НА МОБИЛЕ И ПЛАНШЕТЕ === //
+.widget-achievements__grid {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: $m12;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  @include responsive-prop(
+    padding-inline,
+    ($container-padding-mobile, $container-padding-tablet, null)
+  );
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  // Десктоп: сетка с переносом
+  @include screen-min('lg') {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+.widget-achievements__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 158px;
+  gap: $m5;
+  flex-shrink: 0;
+
+  &--no-received {
+    .widget-achievements__title,
+    .widget-achievements__desc {
+      color: $text-default-label;
+    }
+  }
+}
+
+.widget-achievements__image {
+  width: 158px;
+  max-width: none;
+}
+
+.widget-achievements__title {
+  @include font-titles-body-subheader;
+  text-align: center;
+}
+
+.widget-achievements__desc {
+  font-size: 0.875rem;
+  text-align: center;
+  color: $text-default-secondary;
+  line-clamp: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

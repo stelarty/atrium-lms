@@ -1,0 +1,89 @@
+.widget-student-homework-card {
+  display: flex;
+  flex-direction: column;
+  gap: $m8;
+  @include responsive-prop(padding, ($m8, $m12, null));
+  border: 1px solid $surface-default-stroke;
+  border-radius: $m10;
+
+  &__head {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: $m4;
+
+    @include screen-min('md') {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: $m1;
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__title {
+    @include font-titles-body-subheader;
+    color: $text-default-primary;
+  }
+
+  &__deadline {
+    @include font-body-text;
+    color: $text-default-secondary;
+  }
+
+  &__deadline-value {
+    color: $text-default-warning;
+
+    &--overdue {
+      color: $text-default-danger;
+    }
+  }
+
+  &__status {
+    flex-shrink: 0;
+  }
+
+  &__submit,
+  &__test-action,
+  &__oral-action {
+    align-self: flex-start;
+  }
+
+  &__feedback {
+    display: flex;
+    flex-direction: column;
+    gap: $m3;
+  }
+
+  &__feedback-score {
+    display: block;
+    color: $text-default-primary;
+  }
+
+  &__feedback-score-value {
+    color: $text-default-success;
+  }
+
+  &__feedback-comment {
+    display: block;
+  }
+
+  &__feedback-comment-label {
+    @include font-titles-body-subheader;
+    display: block;
+    color: $text-default-primary;
+  }
+
+  &__feedback-comment-text {
+    @include font-body-text;
+    display: block;
+    color: $text-default-primary;
+    white-space: pre-wrap;
+  }
+}

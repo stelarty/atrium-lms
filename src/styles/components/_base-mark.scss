@@ -1,0 +1,9 @@
+.base-mark {
+  @include font-titles-body-subheader;
+  width: 100%;
+  padding: $m5 $m8;
+  border-radius: $m6;
+  margin: 0;
+  color: $text-default-primary;
+  background-color: $surface-default-colored-surface-success;
+}

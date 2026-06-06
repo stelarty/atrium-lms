@@ -1,0 +1,57 @@
+/* src/styles/layout/_layout-main.scss */
+
+.main-layout-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  @include responsive-prop(
+    padding,
+    ($container-padding-mobile, $container-padding-tablet, $container-padding-desktop)
+  );
+
+  @include responsive-prop(gap, ($container-padding-mobile, $container-padding-tablet, null));
+}
+
+// Контейнер контента использует глобальную .container
+.main-layout__content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+}
+
+.main-layout__inner {
+  max-width: $container-max-width;
+  margin-inline: auto;
+  flex: 1;
+}
+
+/** Область смены страниц: transition только здесь, header/footer статичны */
+.main-layout__page {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+}
+
+.main-layout__footer {
+  width: 100%;
+  margin-top: auto;
+  border-top: 1px solid $surface-default-stroke;
+  background-color: $surface-default-secondary;
+
+  @include screen-min('md') {
+    padding: $m10 $m8;
+  }
+
+  @include screen-min('lg') {
+    padding: $m12 $m10;
+  }
+}

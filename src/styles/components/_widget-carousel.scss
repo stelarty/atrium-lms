@@ -1,0 +1,86 @@
+.widget-carousel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @include responsive-prop(gap, ($m8, $m12, null));
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $m6;
+    width: 100%;
+  }
+
+  &__title {
+    @include font-titles-subheader;
+    color: $text-default-primary;
+    margin: 0;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: $m2;
+    flex-shrink: 0;
+  }
+
+  &__nav-btn {
+    @include flex-center();
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: $m5;
+    background-color: transparent;
+    color: $text-default-primary;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover:not(:disabled) {
+      background-color: $surface-default-secondary;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.45;
+    }
+  }
+
+  &__viewport {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  &__track {
+    display: flex;
+    width: 100%;
+    will-change: transform;
+
+    &--animated {
+      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+  }
+
+  &__slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__empty {
+    @include flex-center();
+    min-height: 120px;
+    @include font-body-text;
+    color: $text-default-label;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .widget-carousel__track--animated {
+    transition: none;
+  }
+}

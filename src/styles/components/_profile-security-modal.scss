@@ -1,0 +1,74 @@
+.profile-security-modal {
+  display: flex;
+  flex-direction: column;
+  gap: $m8;
+
+  &--result {
+    align-items: center;
+    justify-content: center;
+    @include responsive-prop(gap, ($m12, $m12, null));
+    @include responsive-prop(padding-block, ($m8, $m8, null));
+  }
+
+  &__success {
+    @include font-body-text;
+    margin: 0;
+    color: $text-default-success;
+  }
+
+  &__message {
+    @include font-body-text;
+    margin: 0;
+    color: $text-default-secondary;
+  }
+
+  &__error {
+    @include font-body-text;
+    margin: 0;
+    color: $text-default-danger;
+  }
+
+  &__result {
+    @include flex-center(column, center, center);
+    @include responsive-prop(gap, ($m12, $m12, null));
+    width: 100%;
+    text-align: center;
+  }
+
+  &__result-icon {
+    @include flex-center(row, center, center);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    &--success {
+      background-color: $surface-default-colored-surface-success;
+      color: $text-default-success;
+    }
+
+    &--error {
+      background-color: $surface-default-colored-surface-warning;
+      color: $text-default-warning;
+    }
+
+    &--pending {
+      background-color: $surface-default-colored-surface-additional;
+      color: $text-default-accent;
+    }
+  }
+
+  &__result-title {
+    @include font-titles-subheader;
+    margin: 0;
+    width: 100%;
+    color: $text-default-primary;
+    text-align: center;
+  }
+
+  &__result-message {
+    @include font-body-text;
+    margin: 0;
+    color: $text-default-secondary;
+    text-align: center;
+  }
+}

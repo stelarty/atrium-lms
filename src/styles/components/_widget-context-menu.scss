@@ -1,0 +1,147 @@
+/* src/styles/components/_widget-context-menu.scss */
+
+.widget-context-menu {
+  position: relative;
+  display: inline-block;
+
+  &__trigger {
+    cursor: pointer;
+  }
+
+  &--primary {
+    @include flex-center(column, flex-start, stretch);
+    gap: $m4;
+  }
+
+  // ================= DESKTOP =================
+  &__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    width: 300px;
+    padding: $m4;
+    background-color: $surface-default-primary;
+    border-radius: $m8;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    &-list {
+      @include flex-center(column, flex-start, flex-start);
+      gap: $m2;
+      margin-right: -$m3;
+      max-height: 300px;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $surface-hover-secondary;
+        border-radius: 4px;
+      }
+    }
+
+    &-item {
+      @include flex-center(row, flex-start);
+      @include font-body-text;
+      padding: $m4 $m6;
+      width: 100%;
+      transition: 0.3s ease;
+      border-radius: $m4;
+
+      &:hover {
+        background: $surface-default-colored-surface-additional;
+        cursor: pointer;
+      }
+
+      &--active {
+        background: $surface-default-colored-surface-additional;
+        color: $text-default-accent;
+      }
+    }
+
+    &--position-left {
+      left: 0;
+    }
+
+    &--position-right {
+      right: 0;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  // ================= MOBILE =================
+  &__mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba($neutral-1000, 0.5);
+    z-index: $z-modal;
+    display: flex;
+
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
+
+  &__mobile-sheet {
+    width: 100%;
+    background-color: $surface-default-primary;
+    border-radius: $m5 $m5 0 0;
+    max-height: 50vh;
+    overflow-y: hidden;
+    margin-top: auto;
+    will-change: transform;
+  }
+
+  &__mobile-handle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $m3 0;
+  }
+
+  &__mobile-handle-bar {
+    width: 40px;
+    height: 4px;
+    background-color: $surface-default-stroke;
+    border-radius: $m1;
+  }
+
+  &__mobile-content {
+    padding: 0 $m4 $m4;
+  }
+}
+
+// ================= ANIMATION =================
+
+// Overlay fade
+.context-menu-mobile-enter-active {
+  transition: opacity 0.2s ease 0.05s;
+}
+
+.context-menu-mobile-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.context-menu-mobile-enter-from,
+.context-menu-mobile-leave-to {
+  opacity: 0;
+}
+
+// Sheet slide (главная анимация)
+.context-menu-mobile-enter-active .widget-context-menu__mobile-sheet,
+.context-menu-mobile-leave-active .widget-context-menu__mobile-sheet {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.context-menu-mobile-enter-from .widget-context-menu__mobile-sheet,
+.context-menu-mobile-leave-to .widget-context-menu__mobile-sheet {
+  transform: translateY(100%);
+}

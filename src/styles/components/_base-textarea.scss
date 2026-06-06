@@ -1,0 +1,165 @@
+.base-textarea {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__label {
+    @include font-body-text();
+    display: flex;
+    align-items: center;
+    gap: $m1;
+    padding: $m2 0;
+    color: $text-default-secondary;
+  }
+
+  &__required {
+    color: $text-default-danger;
+    line-height: 1;
+  }
+
+  &__inner {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: $m2;
+    width: 100%;
+    min-height: 100px;
+    padding: $m4 $m1 $m4 $m6;
+    border: 1px solid $surface-default-stroke;
+    border-radius: $m4;
+    background-color: $surface-default-primary;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+
+    &:hover:not(:focus-within) {
+      border-color: $surface-hover-stroke;
+    }
+
+    &:focus-within {
+      border-color: $surface-default-accent;
+    }
+  }
+
+  &__control {
+    @include font-body-text();
+    flex: 1;
+    width: 100%;
+    min-height: 84px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: $text-default-primary;
+    resize: none;
+    outline: none;
+
+    &::placeholder {
+      color: $text-default-label;
+    }
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: $m4;
+      background-color: $surface-hover-secondary;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+
+  &__counter {
+    @include font-body-text();
+    flex-shrink: 0;
+    color: $text-default-secondary;
+  }
+
+  &__message {
+    @include font-body-caption();
+    display: block;
+    padding: $m2 0;
+    color: $text-default-secondary;
+
+    &--error {
+      color: $text-default-danger;
+    }
+  }
+
+  &--error {
+    .base-textarea__inner {
+      border-color: $surface-default-danger-accent;
+
+      &:hover:not(:focus-within) {
+        border-color: $surface-hover-danger-accent;
+      }
+
+      &:focus-within {
+        border-color: $surface-pressed-danger-accent;
+      }
+    }
+  }
+
+  &--readonly {
+    .base-textarea__inner {
+      border-color: $surface-default-stroke;
+      background-color: $surface-default-secondary;
+
+      &:hover:not(:focus-within) {
+        border-color: $surface-hover-stroke;
+        background-color: $surface-hover-secondary;
+      }
+
+      &:focus-within {
+        border-color: $surface-pressed-stroke;
+        background-color: $surface-pressed-secondary;
+      }
+    }
+
+    .base-textarea__control {
+      cursor: default;
+    }
+  }
+
+  &--disabled {
+    .base-textarea__label {
+      color: $text-default-label;
+    }
+
+    .base-textarea__inner {
+      border-color: $surface-disabled-stroke;
+      background-color: $surface-default-primary;
+
+      &:hover:not(:focus-within),
+      &:focus-within {
+        border-color: $surface-disabled-stroke;
+        background-color: $surface-default-primary;
+      }
+    }
+
+    .base-textarea__control {
+      color: $text-disabled-primary;
+      cursor: not-allowed;
+    }
+
+    .base-textarea__counter {
+      color: $text-disabled-secondary;
+    }
+
+    .base-textarea__message {
+      color: $text-default-label;
+    }
+  }
+
+  &--disabled.base-textarea--readonly {
+    .base-textarea__label {
+      color: $text-disabled-secondary;
+    }
+
+    .base-textarea__inner {
+      background-color: $surface-disabled-secondary;
+    }
+  }
+}

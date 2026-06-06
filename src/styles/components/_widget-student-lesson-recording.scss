@@ -1,0 +1,36 @@
+.widget-student-lesson-recording {
+  @include flex-center(column);
+  gap: $m8;
+  width: 100%;
+  text-align: center;
+  background-color: $surface-default-accent;
+  @include responsive-prop(padding, ($m16 $m12, $m20, $m20));
+  @include responsive-prop(border-radius, ($m12, $m12, 24px));
+
+  &__preview {
+    @include flex-center();
+    width: 80px;
+    height: 56px;
+    border-radius: $m4;
+    background-color: $surface-default-primary;
+    overflow: hidden;
+  }
+
+  &__preview-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__title {
+    @include font-titles-bodyheader;
+    color: $text-default-tertiary;
+    max-width: 356px;
+  }
+
+  &__link {
+    max-width: 100%;
+    white-space: normal;
+  }
+}

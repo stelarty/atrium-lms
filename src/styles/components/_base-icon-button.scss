@@ -1,0 +1,116 @@
+/* =========================================
+   Base Icon Button
+========================================= */
+
+.base-icon-button {
+  @include flex-center();
+  width: 32px;
+  height: 32px;
+  // padding: $m4; // 8px
+  border-radius: $m5; // 8px
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s;
+
+  // Содержимое — иконка — по центру
+  > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ---------- Тип: contained ---------- */
+  &--contained {
+    &.base-icon-button--primary {
+      background-color: $surface-default-accent;
+      color: $icon-default-tertiary;
+
+      &:hover:not(.base-icon-button--disabled) {
+        background-color: $surface-hover-accent;
+      }
+      &:active:not(.base-icon-button--disabled) {
+        background-color: $surface-pressed-accent;
+      }
+    }
+
+    &.base-icon-button--secondary {
+      background-color: $surface-default-secondary;
+      color: $icon-default-secondary;
+
+      &:hover:not(.base-icon-button--disabled) {
+        background-color: $surface-hover-secondary;
+      }
+      &:active:not(.base-icon-button--disabled) {
+        background-color: $surface-pressed-secondary;
+      }
+    }
+
+    &.base-icon-button--error {
+      background-color: $surface-default-danger-accent;
+      color: $icon-default-tertiary;
+
+      &:hover:not(.base-icon-button--disabled) {
+        background-color: $surface-hover-danger-accent;
+      }
+      &:active:not(.base-icon-button--disabled) {
+        background-color: $surface-pressed-danger-accent;
+      }
+    }
+  }
+
+  /* ---------- Тип: text ---------- */
+  &--text {
+    background-color: transparent;
+
+    &.base-icon-button--primary {
+      color: $icon-default-accent;
+
+      &:hover:not(.base-icon-button--disabled) {
+        background-color: $surface-hover-colored-surface-accent;
+      }
+      &:active:not(.base-icon-button--disabled) {
+        background-color: $surface-pressed-colored-surface-accent;
+      }
+    }
+
+    &.base-icon-button--secondary {
+      color: $icon-default-secondary;
+
+      &:hover:not(.base-icon-button--disabled) {
+       background-color: $surface-hover-secondary;
+      }
+      &:active:not(.base-icon-button--disabled) {
+       background-color: $surface-pressed-secondary;
+      }
+    }
+
+    &.base-icon-button--error {
+      color: $surface-default-danger-accent;
+
+      &:hover:not(.base-icon-button--disabled) {
+        background-color: $surface-hover-danger;
+      }
+      &:active:not(.base-icon-button--disabled) {
+       background-color: $surface-pressed-danger;
+      }
+    }
+  }
+
+  /* ---------- Состояние: disabled ---------- */
+  &--disabled {
+    &.base-icon-button--text {
+      cursor: not-allowed;
+      pointer-events: none;
+      color: $icon-disabled-secondary;
+    }
+
+    &.base-icon-button--contained {
+      background-color: $surface-disabled-accent;
+      cursor: not-allowed;
+      pointer-events: none;
+      color: $icon-disabled-secondary;
+    }
+  }
+}

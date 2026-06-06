@@ -1,0 +1,31 @@
+/// Shared styles for lesson `teacher_comment` (student materials block + teacher preview).
+@mixin lesson-teacher-comment-content {
+  @include font-body-caption;
+  color: $text-default-secondary;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  :deep(a) {
+    @include font-body-caption;
+    color: $text-default-accent;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.lesson-teacher-comment-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @include responsive-prop(padding, ($m8, $m12, null));
+  border: 1px solid $surface-default-stroke;
+  border-radius: $m10;
+  background-color: $surface-default-primary;
+}
+
+.lesson-teacher-comment-content {
+  @include lesson-teacher-comment-content;
+}

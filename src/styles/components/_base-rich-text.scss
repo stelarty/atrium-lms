@@ -1,0 +1,21 @@
+@import '@/styles/components/lesson-teacher-comment';
+
+.base-rich-text {
+  @include font-body-text;
+  color: $text-default-primary;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  :deep(a) {
+    color: $text-default-accent;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &--materials-comment {
+    @include lesson-teacher-comment-content;
+  }
+}

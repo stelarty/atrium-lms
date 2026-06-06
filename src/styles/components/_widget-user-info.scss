@@ -1,0 +1,96 @@
+.widget-user-info {
+  @include flex-center(column, center, stretch);
+  @include responsive-prop(gap, ($container-padding-mobile, $container-padding-tablet, null));
+
+  &__top {
+    @include flex-center($justify: space-between);
+  }
+
+  &__heading {
+    @include font-titles-subheader;
+    color: $text-default-primary;
+  }
+
+  &__action {
+    gap: $m4;
+
+    @include flex-center($justify: space-between);
+    @include responsive-prop(flex-direction, (column, row, null));
+    @include responsive-prop(align-items, (stretch, center, null));
+  }
+
+  &__list {
+    @include flex-center($justify: space-between, $align: stretch);
+    @include responsive-prop(gap, ($m4, $m8, $m5));
+    @include responsive-prop(flex-direction, (column, row, null));
+
+    .widget-user-info__card {
+      position: relative;
+      border: 0;
+      border-radius: $m8;
+      background: $surface-default-secondary;
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      color: inherit;
+      text-align: left;
+
+      @include flex-center(column, flex-start, start);
+      @include responsive-prop(padding, ($m5 $m8, $m8));
+      @include responsive-prop(gap, ($m1, $m2, null));
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &--interactive {
+        cursor: pointer;
+        padding-right: $m16;
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+          background: $surface-hover-secondary;
+        }
+
+        &:focus-visible {
+          outline: 2px solid $surface-default-accent;
+          outline-offset: 2px;
+        }
+      }
+
+      .widget-user-info__label {
+        @include font-titles-body-subheader;
+        color: $text-default-secondary;
+      }
+
+      .widget-user-info__value {
+        @include font-titles-body-subheader;
+        color: $text-default-primary;
+
+        &--email {
+          max-width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  &__edit-icon {
+    position: absolute;
+    right: $m8;
+    @include responsive-prop(top, ($m5, $m8, null));
+    color: $text-default-primary;
+    pointer-events: none;
+  }
+
+  &__loading {
+    text-align: center;
+    color: $text-default-secondary;
+    padding: $m10 0;
+  }
+}

@@ -1,0 +1,56 @@
+/* =========================================
+   Surface / Background Colors
+========================================= */
+
+/* Default surfaces */
+$surface-default-accent: $accent-500;
+$surface-default-danger: $red-100;
+$surface-default-danger-accent: $red-500;
+$surface-default-overlay: #17191fb2;
+$surface-default-primary: $neutral-0;
+$surface-default-secondary: $neutral-100;
+$surface-default-stroke: $neutral-200;
+$surface-default-success: $green-500;
+$surface-default-tertiary: $neutral-200;
+$surface-default-warning: $orange-400;
+
+/* Colored surfaces */
+$surface-default-colored-surface-additional: $accent-100;
+$surface-default-colored-surface-success: $green-100;
+$surface-default-colored-surface-warning: $orange-100;
+
+/* Disabled surfaces */
+$surface-disabled-accent: $neutral-100;
+$surface-disabled-danger: $neutral-100;
+$surface-disabled-danger-accent: $neutral-100;
+$surface-disabled-primary: $neutral-0;
+$surface-disabled-secondary: $neutral-100;
+$surface-disabled-stroke: $neutral-200;
+$surface-disabled-tertiary: $neutral-0;
+$surface-disabled-colored-surface-accent: $neutral-100;
+$surface-disabled-colored-surface-success: $neutral-100;
+$surface-disabled-colored-surface-warning: $neutral-100;
+
+/* Hovered surfaces */
+$surface-hover-accent: $accent-600;
+$surface-hover-danger: $red-200;
+$surface-hover-danger-accent: $red-600;
+$surface-hover-primary: $neutral-100;
+$surface-hover-secondary: $neutral-200;
+$surface-hover-stroke: $neutral-300;
+$surface-hover-tertiary: $neutral-300;
+$surface-hover-colored-surface-accent: $accent-200;
+$surface-hover-colored-surface-success: $green-200;
+$surface-hover-colored-surface-warning: $orange-200;
+
+/* Pressed surfaces */
+$surface-pressed-accent: $accent-700;
+$surface-pressed-danger: $red-300;
+$surface-pressed-danger-accent: $red-700;
+$surface-pressed-primary: $neutral-200;
+$surface-pressed-secondary: $neutral-300;
+$surface-pressed-stroke: $neutral-400;
+$surface-pressed-tertiary: $neutral-0;
+$surface-pressed-colored-surface-accent: $accent-300;
+$surface-pressed-colored-surface-success: $green-300;
+$surface-pressed-colored-surface-warning: $orange-300;

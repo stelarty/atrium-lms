@@ -1,0 +1,36 @@
+.teacher-gradebook-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @include responsive-prop(gap, ($container-padding-mobile, $container-padding-tablet, null));
+
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: $m8;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    gap: $m8;
+  }
+
+  &__state {
+    @include flex-center(column);
+    gap: $m6;
+    min-height: 240px;
+    text-align: center;
+  }
+
+  &__state-title {
+    @include font-titles-bodyheader;
+    color: $text-default-primary;
+  }
+
+  &__state-text {
+    @include font-body-text;
+    color: $text-default-secondary;
+  }
+}

@@ -1,0 +1,70 @@
+.widget-lesson-card {
+  @include flex-center(column, center, stretch);
+  position: relative;
+  width: 100%;
+  border: 1px solid $surface-default-stroke;
+  border-radius: $m8;
+  gap: $m4;
+  @include responsive-prop(padding, ($m8, $m12, null));
+
+  &__info {
+    @include flex-center(column-reverse, flex-start, flex-start);
+    gap: $m4;
+    
+    @include screen-min('md') {
+      @include flex-center(row, space-between, center);
+    }
+  }
+
+  &__date {
+    @include font-body-caption;
+    color: $text-default-secondary;
+    padding: $m2 0;
+  }
+
+  &__title {
+    @include font-titles-subheader;
+  }
+
+  &__status {
+    transition: opacity 0.3s ease;
+  }
+
+  &__edit-icon {
+    position: absolute;
+    @include responsive-prop(top, ($m8, $m12, null));
+    @include responsive-prop(right, ($m8, $m12, null));
+    opacity: 0;
+    color: $text-default-secondary;
+    transition:
+      opacity 0.2s ease,
+      color 0.2s ease;
+    pointer-events: none;
+  }
+
+  &--interactive {
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+
+    &:hover {
+      background-color: $surface-default-secondary;
+      border-color: $surface-default-secondary;
+
+      .widget-lesson-card__status {
+        opacity: 0;
+      }
+
+      .widget-lesson-card__edit-icon {
+        opacity: 1;
+        color: $text-default-primary;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $text-default-primary;
+      outline-offset: 2px;
+    }
+  }
+}

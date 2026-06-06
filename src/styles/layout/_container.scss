@@ -1,0 +1,8 @@
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}

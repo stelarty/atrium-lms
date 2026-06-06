@@ -1,0 +1,21 @@
+/* src/styles/layout/_layout-footer.scss */
+
+.footer {
+  background-color: $surface-default-secondary;
+  color: $text-default-secondary;
+  margin-top: auto;
+
+  &__inner {
+    @include flex-center(column);
+    gap: $m3;
+
+    @include responsive-prop(
+      padding-inline,
+      ($container-padding-mobile, $container-padding-tablet, $container-padding-desktop)
+    );
+  }
+
+  &__version {
+    @include font-body-caption();
+  }
+}

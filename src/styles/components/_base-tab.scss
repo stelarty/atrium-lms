@@ -1,0 +1,82 @@
+/* =========================================
+   Base Tab — Mobile-First
+========================================= */
+
+.base-tab {
+  @include responsive-prop(border-radius, ($m5, $m6, $m10));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  flex-direction: row;
+  gap: $m4;
+  padding: $m4 $m8;
+  background-color: transparent;
+  color: $text-default-secondary;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover:not(&--disabled) {
+    background-color: $surface-default-colored-surface-additional;
+  }
+
+  &--active {
+    background-color: $surface-default-colored-surface-additional;
+    color: $text-default-primary;
+
+    .ui-icon {
+      color: $surface-default-accent; // ← иконка отдельно
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:active:not(&--disabled) {
+    transform: scale(0.98);
+  }
+
+  .base-tab__icon {
+    display: none;
+    flex-shrink: 0;
+  }
+
+  .base-tab__label {
+    @include font-body-caption();
+    white-space: nowrap;
+  }
+
+  @include screen-min('md') {
+    .base-tab__icon {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+  }
+  @include screen-min('lg') {
+  }
+
+  // 🖥 Desktop — твои текущие стили
+  @include screen-min('lg') {
+    gap: $m3;
+    padding: $m4 $m4;
+    flex-direction: column;
+
+    .base-tab__icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .base-tab__label {
+      @include font-body-text();
+    }
+  }
+}

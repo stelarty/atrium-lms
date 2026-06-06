@@ -1,0 +1,119 @@
+.widget-teacher-gradebook-table {
+  // breakout: компенсируем padding контейнера для горизонтального скролла
+  width: calc(100% + #{$container-padding-mobile * 2});
+  margin-inline: -$container-padding-mobile;
+  padding-inline: $container-padding-mobile;
+
+  @include screen-min('md') {
+    width: calc(100% + #{$container-padding-tablet * 2});
+    margin-inline: -$container-padding-tablet;
+    padding-inline: $container-padding-tablet;
+  }
+
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  display: grid;
+  grid-template-columns:
+    minmax(200px, 1fr)
+    minmax(120px, max-content)
+    minmax(72px, max-content)
+    minmax(120px, max-content)
+    max-content;
+  row-gap: $m8;
+  column-gap: $m9;
+  align-items: center;
+
+  &--compact {
+    grid-template-columns:
+      minmax(200px, 1fr)
+      minmax(120px, max-content)
+      minmax(72px, max-content);
+  }
+
+  &__header,
+  &__row {
+    display: contents;
+  }
+
+  &__cell {
+    @include font-body-text;
+    display: flex;
+    align-items: center;
+    color: $text-default-secondary;
+
+    &--name {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: $m1;
+      min-width: 0;
+      width: 100%;
+    }
+
+    &--score {
+      @include font-body-button;
+      color: $text-default-primary;
+    }
+
+  }
+
+  &__header &__cell {
+    @include font-body-caption;
+    font-weight: 500;
+    min-height: auto;
+    padding-bottom: $m2;
+
+    &--score {
+      color: $text-default-secondary;
+    }
+  }
+
+  &__name {
+    @include font-body-button;
+    color: $text-default-primary;
+  }
+
+  &__email {
+    @include font-body-caption;
+    color: $text-default-secondary;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: $m6;
+    padding: $m8;
+    border: 1px solid $surface-default-stroke;
+    border-radius: $m10;
+    background-color: $surface-default-primary;
+  }
+
+  &__card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $m4;
+  }
+
+  &__card-score {
+    @include font-body-text;
+    color: $text-default-secondary;
+
+    span {
+      color: $text-default-primary;
+    }
+  }
+
+  &__card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $m4;
+  }
+}

@@ -1,0 +1,148 @@
+@import '@/styles/components/lesson-teacher-comment';
+
+.student-lesson-view {
+  width: 100%;
+  @extend .view !optional;
+
+  /** Single root for <Transition> — same vertical rhythm as .view between stacked sections */
+  &__transition-root {
+    display: flex;
+    flex-direction: column;
+    @include responsive-prop(gap, ($m8, $m12, $m12));
+    width: 100%;
+  }
+
+  &__skeleton-intro {
+    @include flex-center(column);
+    gap: $m6;
+    text-align: center;
+  }
+
+  &__skeleton-media,
+  &__skeleton-panel {
+    display: flex;
+    flex-direction: column;
+    gap: $m8;
+  }
+
+  &__state {
+    @include flex-center(column);
+    gap: $m6;
+    min-height: 280px;
+    text-align: center;
+  }
+
+  &__state-title {
+    @include font-titles-bodyheader;
+  }
+
+  &__state-text {
+    @include font-body-text;
+    color: $text-default-secondary;
+  }
+
+  &__intro {
+    @include flex-center(column);
+    @include responsive-prop(gap, ($m2, $m6, $m6));
+    text-align: center;
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: $m2;
+  }
+
+  &__title {
+    @include font-titles-header;
+    color: $text-default-primary;
+    text-align: center;
+  }
+
+  &__description {
+    @include font-body-text;
+    color: $text-default-secondary;
+    text-align: center;
+  }
+
+  &__info {
+    @include flex-center(column);
+    gap: $m8;
+    text-align: center;
+    overflow: hidden;
+
+    &--scheduled {
+      @include responsive-prop(padding, ($m16 $m8, $m20 $m12, $m20 $m12));
+    }
+  }
+
+  &__info-image {
+    object-fit: contain;
+    @include responsive-prop(width, (100px, 150px, 150px));
+    @include responsive-prop(height, (100px, 150px, 150px));
+  }
+
+  &__info-date {
+    @include font-titles-bodyheader;
+    color: $text-default-primary;
+  }
+
+  &__info-hint {
+    @include font-body-text;
+    color: $text-default-secondary;
+  }
+
+  &__info-link {
+    @include font-body-text;
+    color: $text-default-accent;
+    text-decoration: none;
+    word-break: break-word;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__homework,
+  &__materials {
+    display: flex;
+    flex-direction: column;
+    gap: $m8;
+  }
+
+  &__teacher-comment {
+    margin-top: $m2;
+  }
+
+  &__section-title {
+    @include font-titles-bodyheader;
+    color: $text-default-primary;
+  }
+
+  &__empty {
+    @include flex-center();
+    @include responsive-prop(min-height, (88px, 276px, 276px));
+    @include font-body-text;
+    color: $text-default-label;
+    text-align: center;
+  }
+
+  &__homework-list {
+    display: flex;
+    flex-direction: column;
+    gap: $m6;
+  }
+
+  &__submit-error {
+    @include font-body-caption;
+    color: $text-default-danger;
+  }
+
+  &__file-input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}

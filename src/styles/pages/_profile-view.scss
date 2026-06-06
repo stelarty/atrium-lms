@@ -1,0 +1,29 @@
+.profile-section {
+  &__header {
+    @include flex-center(row, space-between, start);
+    @include responsive-prop(flex-direction, (column, row, null));
+  }
+
+  &__info {
+    @include flex-center(column, flex-start, flex-start);
+    gap: $m2;
+  }
+
+  &__role {
+    color: $text-default-secondary;
+    @include font-body-text;
+  }
+
+  &__title {
+    display: flex;
+    gap: $m4;
+    align-items: center;
+    @include font-titles-header;
+  }
+
+  &__edit {
+    display: flex;
+    align-items: center;
+    gap: $m4;
+  }
+}

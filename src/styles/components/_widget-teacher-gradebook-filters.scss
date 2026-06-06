@@ -1,0 +1,95 @@
+.widget-teacher-gradebook-filters {
+  display: flex;
+  flex-direction: column;
+  gap: $m8;
+
+  @include screen-min('lg') {
+    flex-direction: row;
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    gap: $m8;
+  }
+
+  &-right {
+    width: 100%;
+  }
+
+  &__difficulty {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    @include screen-min('md') {
+      overflow: visible;
+    }
+    &-label {
+      @include font-body-text;
+      color: $text-default-secondary;
+      display: block;
+      padding: $m2 0;
+    }
+  }
+
+  &__selects {
+    display: flex;
+    flex-direction: column;
+    gap: $m8;
+
+    @include screen-min('md') {
+      flex-direction: row;
+
+      .base-select {
+        flex: 1;
+      }
+    }
+
+    @include screen-min('lg') {
+      flex-direction: column;
+    }
+  }
+
+  &__preview {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $m6;
+    padding: $m12;
+    border-radius: $m10;
+    background-color: $surface-default-primary;
+    border: 2px solid $surface-default-accent;
+  }
+
+  &__test-notice {
+    width: 100%;
+
+    :deep(.base-chip) {
+      width: 100%;
+      white-space: normal;
+      justify-content: flex-start;
+      text-align: left;
+    }
+  }
+
+  &__preview-head {
+    display: flex;
+    flex-direction: column;
+    gap: $m3;
+  }
+
+  &__preview-title {
+    @include font-titles-body-subheader;
+    color: $text-default-primary;
+  }
+
+  &__preview-deadline {
+    @include font-body-text;
+    color: $text-default-secondary;
+
+    span {
+      color: $text-default-label;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+/* =========================================
+   Typography Mixins
+========================================= */
+
+/* Сокращённый миксин для текста с размером, весом и высотой строки */
+@mixin font($size, $weight: 400, $line-height: 1.5, $letter-spacing: normal) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+/* Текст с усечением */
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* =========================================
+   Дизайнерские шрифтовые миксины
+========================================= */
+
+@mixin font-titles-header {
+  font-family: 'Manrope';
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -2%;
+
+  @include responsive-prop(font-size, ($m12, $m16, null));
+  @include responsive-prop(line-height, ($m16, $m20, null));
+}
+
+@mixin font-titles-subheader {
+  font-family: 'Manrope';
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -2%;
+
+  @include responsive-prop(font-size, ($m9, $m12, null));
+  @include responsive-prop(line-height, ($m12, $m16, null));
+}
+
+@mixin font-titles-bodyheader {
+  font-family: 'Manrope';
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 133.33%;
+  text-decoration: none;
+  letter-spacing: normal;
+}
+
+@mixin font-titles-body-subheader {
+  font-family: 'Manrope';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: none;
+  letter-spacing: normal;
+}
+
+@mixin font-body-text {
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 142.86%;
+  text-decoration: none;
+  letter-spacing: 1%;
+}
+
+@mixin font-body-caption {
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133.33%;
+  text-decoration: none;
+  letter-spacing: normal;
+}
+
+@mixin font-body-button {
+  font-family: 'Manrope';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 114.29%;
+  text-decoration: none;
+  letter-spacing: normal;
+}

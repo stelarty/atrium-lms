@@ -1,0 +1,18 @@
+/* =========================================
+   Media Queries (Mobile-First)
+========================================= */
+
+/// Адаптивность по минимальной ширине экрана.
+/// Используется для progressive enhancement.
+///
+/// @param {String} $size - Брейкпоинт: 'sm', 'md', 'lg', 'xl'
+/// @example
+///   @include screen-min('md') {
+///     flex-direction: row;
+///   }
+@mixin screen-min($size) {
+  @if $size == 'sm' { @media (min-width: 640px) { @content; } }   // Маленькие планшеты+
+  @if $size == 'md' { @media (min-width: 768px) { @content; } }   // Планшеты+
+  @if $size == 'lg' { @media (min-width: 1024px) { @content; } }  // Десктопы+
+  @if $size == 'xl' { @media (min-width: 1280px) { @content; } }  // Большой десктоп+
+}

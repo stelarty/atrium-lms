@@ -1,0 +1,107 @@
+.base-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__label {
+    @include font-body-text();
+    color: $text-default-secondary;
+    display: block;
+    padding: $m2 0;
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: $m6;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-default-label;
+    pointer-events: none; // Клик проходит сквозь иконку в инпут
+    z-index: 1;
+    transition: color 0.2s ease;
+  }
+
+  &__control {
+    @include font-body-text();
+    width: 100%;
+    min-height: $m16;
+    padding: $m3 $m6;
+    border: 1px solid $surface-default-stroke;
+    border-radius: $m4;
+    background-color: $surface-default-primary;
+    color: $text-default-primary;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      color 0.2s ease;
+
+    &::placeholder {
+      color: $text-default-label;
+    }
+
+    &:hover {
+      border-color: $surface-hover-stroke;
+    }
+
+    &:focus {
+      border-color: $surface-default-accent;
+
+      & + .base-input__search-icon,
+      ~ .base-input__search-icon {
+        // Иконка не меняет цвет при фокусе, остаётся нейтральной
+        color: $text-default-label;
+      }
+    }
+
+    // ✅ Модификатор для поискового инпута
+    &--search {
+      padding-left: 32px; // Отступ под иконку (16px + 8px gap + 8px padding)
+    }
+
+    // ✅ Скрываем нативный синий крестик (Webkit/Blink)
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      appearance: none;
+      display: none;
+    }
+  }
+
+  &__message {
+    @include font-body-caption();
+    color: $text-default-secondary;
+    display: block;
+    padding: $m2 0;
+
+    &--error {
+      color: $text-default-danger;
+    }
+  }
+
+  &--disabled {
+    .base-input__label,
+    .base-input__message {
+      color: $text-default-label;
+    }
+
+    .base-input__control {
+      border-color: $surface-disabled-stroke;
+      color: $text-disabled-primary;
+      cursor: not-allowed;
+      
+      & + .base-input__search-icon {
+        color: $text-disabled-primary;
+      }
+    }
+  }
+
+  &--error {
+    .base-input__control {
+      border-color: $surface-default-danger-accent;
+    }
+  }
+}

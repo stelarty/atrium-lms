@@ -1,0 +1,75 @@
+.base-date {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__label {
+    @include font-body-text();
+    color: $text-default-secondary;
+    display: block;
+    padding: $m2 0;
+  }
+
+  &__field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__control {
+    @include font-body-text();
+    width: 100%;
+    min-height: $m16;
+    padding: $m3 $m10 $m3 $m6;
+    border: 1px solid $surface-default-stroke;
+    border-radius: $m4;
+    background-color: $surface-default-primary;
+    color: $text-default-primary;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: $surface-default-accent;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: $m4;
+    pointer-events: none;
+    color: $text-default-secondary;
+  }
+
+  &__message {
+    @include font-body-caption();
+    color: $text-default-secondary;
+    display: block;
+    padding: $m2 0;
+
+    &--error {
+      color: $text-default-danger;
+    }
+  }
+
+  &--disabled {
+    .base-date__label,
+    .base-date__message,
+    .base-date__icon {
+      color: $text-disabled-primary;
+    }
+
+    .base-date__control {
+      border-color: $surface-disabled-stroke;
+      background-color: $surface-disabled-primary;
+      color: $text-disabled-primary;
+      cursor: not-allowed;
+    }
+  }
+
+  &--error {
+    .base-date__control {
+      border-color: $surface-default-danger-accent;
+    }
+  }
+}

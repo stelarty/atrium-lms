@@ -1,0 +1,41 @@
+.base-chip {
+  @include font-body-button;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: $m2 $m4;
+  border-radius: $m3;
+  text-decoration: none;
+  white-space: nowrap;
+  word-break: break-word;
+
+  &--success {
+    background-color: $surface-default-colored-surface-success;
+    color: $text-default-success;
+  }
+
+  &--warning {
+    background-color: $surface-default-colored-surface-warning;
+    color: $text-default-warning;
+  }
+
+  &--danger {
+    background-color: $surface-default-danger;
+    color: $text-default-danger;
+  }
+
+  &--additional {
+    background-color: $surface-default-colored-surface-additional;
+    color: $text-default-accent;
+  }
+
+  &--neutral {
+    background-color: $surface-default-secondary;
+    color: $text-default-secondary;
+  }
+
+  &[href]:hover {
+    text-decoration: underline;
+  }
+}

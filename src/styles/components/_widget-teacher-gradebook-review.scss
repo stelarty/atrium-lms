@@ -1,0 +1,121 @@
+.widget-teacher-gradebook-review-modal {
+  :deep(.base-modal__content) {
+    max-width: 586px;
+    gap: $m8;
+    background-color: $surface-default-secondary;
+  }
+
+  :deep(.base-modal__title) {
+    @include font-titles-subheader;
+    margin: 0;
+  }
+
+  :deep(.base-modal__close-btn) {
+    width: 32px;
+    height: 32px;
+    border-radius: $m5;
+    background-color: $surface-default-secondary;
+  }
+
+  :deep(.base-modal__body) {
+    padding: 0;
+  }
+
+  :deep(.base-modal__footer) {
+    padding-top: 0;
+  }
+}
+
+.widget-teacher-gradebook-review {
+  display: flex;
+  flex-direction: column;
+  gap: $m8;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: $m8;
+    padding: $m12;
+    border-radius: $m12;
+    background-color: $surface-default-primary;
+  }
+
+  &__card-title {
+    @include font-titles-bodyheader;
+    margin: 0;
+    color: $text-default-primary;
+  }
+
+  &__upload {
+    @include flex-center(column);
+    gap: $m10;
+    width: 100%;
+    padding: $m16;
+    border: 1px dashed $neutral-300;
+    border-radius: $m8;
+    background-color: $surface-default-primary;
+    text-align: center;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+
+    &--dragging {
+      border-color: $surface-default-accent;
+      background-color: $surface-default-colored-surface-additional;
+    }
+  }
+
+  &__upload-image {
+    display: block;
+    width: 133px;
+    height: 133px;
+    object-fit: contain;
+  }
+
+  &__upload-text {
+    @include font-body-text;
+    margin: 0;
+    color: $text-default-secondary;
+  }
+
+  &__file-input {
+    display: none;
+  }
+
+  &__score-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $m4;
+  }
+
+  &__score-switcher {
+    flex-shrink: 0;
+
+    :deep(.base-switcher__label) {
+      color: $text-default-secondary;
+    }
+  }
+
+  &__score-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $m8;
+
+    @include screen-min('sm') {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__hint {
+    @include font-body-caption;
+    margin: 0;
+    color: $text-default-secondary;
+  }
+
+  &__error {
+    @include font-body-caption;
+    margin: 0;
+    color: $text-default-danger;
+  }
+}

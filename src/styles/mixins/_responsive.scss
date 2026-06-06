@@ -1,0 +1,28 @@
+/* =========================================
+   Responsive Properties (Автоматизация)
+========================================= */
+
+/// Устанавливает разные значения CSS-свойства для mobile, tablet, desktop.
+/// Mobile — значение по умолчанию, tablet и desktop — через media queries.
+///
+/// @param {String} $property - CSS-свойство, например `padding`, `font-size`
+/// @param {List} $values - Список значений: (mobile, tablet, desktop)
+/// @example
+///   @include responsive-prop(padding, (16px, 20px, 24px));
+///   @include responsive-prop(font-size, (14px, 16px, 18px));
+
+@mixin responsive-prop($property, $values) {
+  $mobile: nth($values, 1);
+  $tablet: if(length($values) > 1, nth($values, 2), $mobile);
+  $desktop: if(length($values) > 2, nth($values, 3), $tablet);
+
+  #{$property}: $mobile;
+
+  @include screen-min('md') {
+    #{$property}: $tablet;
+  }
+
+  @include screen-min('lg') {
+    #{$property}: $desktop;
+  }
+}

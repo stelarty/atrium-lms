@@ -1,0 +1,66 @@
+/* BaseBanner — DS LMS (mobile-first). Variants: panel (card), default / accent (strip). */
+
+.base-banner {
+  width: 100%;
+  background-color: $surface-default-primary;
+  border: 2px solid $surface-default-accent;
+  @include border-radius($m8);
+  @include flex-center(column);
+  position: relative;
+  gap: $m4;
+  padding: $m8;
+  overflow: hidden;
+
+  @include screen-min('md') {
+    @include flex-center(row, flex-start, stretch);
+    gap: $m20;
+  }
+
+  &__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    @include screen-min('md') {
+      position: relative;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .base-banner__body {
+    flex: 1;
+    height: stretch;
+    @include flex-center(column, center, flex-start);
+    color: $text-default-primary;
+    gap: $m3;
+    width: 100%;
+    padding-right: $m20;
+  }
+
+  .base-banner__title {
+    color: $text-default-primary;
+    @include font-titles-subheader();
+  }
+
+  .base-banner__description {
+    margin: 0;
+    color: $text-default-secondary;
+    @include font-body-text();
+  }
+
+  .base-banner__media {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .base-banner__img {
+    display: block;
+    width: auto;
+    height: 120px;
+    // height: 100%;
+    object-fit: contain;
+    margin-bottom: -$m10;
+  }
+}

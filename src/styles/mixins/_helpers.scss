@@ -1,0 +1,26 @@
+/* =========================================
+   Helpers / Common Mixins
+========================================= */
+
+/* Flex center */
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+/* Smooth transition */
+@mixin transition($properties: all, $duration: 0.3s, $timing: ease-in-out) {
+  transition: $properties $duration $timing;
+}
+
+/* Box shadow */
+@mixin box-shadow($x: 0px, $y: 2px, $blur: 8px,  $spread: 0px, $color: rgba(0,0,0,0.1)) {
+  box-shadow: $x $y $blur $spread $color;
+}
+
+/* Border radius */
+@mixin border-radius($radius: $m8) {
+  border-radius: $radius;
+}

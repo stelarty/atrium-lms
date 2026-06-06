@@ -1,0 +1,114 @@
+.course-view {
+  display: flex;
+  flex-direction: column;
+  @include responsive-prop(gap, ($container-padding-mobile, $container-padding-tablet, null));
+  width: 100%;
+  flex: 1;
+
+  // ===== Header =====
+  &__header {
+    @include flex-center(column);
+    @include responsive-prop(gap, ($m2, $m6, null));
+  }
+
+  &__title {
+    @include font-titles-header;
+    text-align: center;
+  }
+
+  &__title-slot {
+    @include flex-center();
+    @include responsive-prop(min-height, ($m16, $m20, null));
+    width: 100%;
+  }
+
+  &__title-skeleton {
+    @include responsive-prop(height, ($m16, $m20, null));
+  }
+
+  &__subtitle {
+    @include font-body-text;
+    color: $text-default-secondary;
+  }
+
+  &__access {
+    @include font-body-text;
+    color: $text-default-secondary;
+  }
+
+  &__access-slot {
+    @include flex-center();
+    min-height: 20px;
+    width: 100%;
+  }
+
+  &__access-skeleton {
+    height: 20px;
+  }
+
+  // ===== Content =====
+  &__content {
+    width: 100%;
+    flex: 1;
+  }
+
+  // ===== Empty state =====
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    gap: $m10;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+  }
+
+  &__image {
+    width: 100%;
+    max-width: 80px;
+  }
+
+  &__welcome {
+    display: flex;
+    flex-direction: column;
+    gap: $m4;
+    max-width: 500px;
+  }
+
+  // ===== Actions =====
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: $m3;
+    margin-top: $m6;
+  }
+
+  // ===== Loading =====
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    text-align: center;
+    color: $text-default-secondary;
+  }
+}
+
+// // Floating onboarding (teleported to body from CourseView)
+// .course-view__onboarding-host {
+//   position: fixed;
+//   inset-inline: $m4;
+//   bottom: $m4;
+//   z-index: $z-dropdown;
+//   max-width: 100%;
+//   pointer-events: none;
+
+//   > * {
+//     pointer-events: auto;
+//   }
+
+//   @media (min-width: 768px) {
+//     inset-inline: auto $m6;
+//     max-width: min(420px, calc(100vw - #{$m6} * 2));
+//   }
+// }

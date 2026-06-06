@@ -1,0 +1,21 @@
+stages:
+  - deploy
+
+deploy:dev:
+  stage: deploy
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+      allow_failure: true
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+      when: manual
+      allow_failure: true
+  trigger:
+    project: atrium/atrium-infra
+    branch: main
+    strategy: depend
+  variables:
+    ANSIBLE_PLAYBOOK: "docker/04-deploy-frontend-lms.yaml"
+    ENVIRONMENT: "test"
+    ANSIBLE_OPTIONS: "-e apps.frontend_lms.version=$CI_COMMIT_REF_NAME"
+  resource_group: dev-deploy-frontend-lms
