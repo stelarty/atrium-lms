@@ -1,1 +1,0 @@
-import{l as r,m as s}from"./index-Dc1aTd_m.js";function n(){const e=s();return r(()=>{if(typeof window<"u"&&localStorage.getItem("role")!=="student")return!1;const t=e.path;return!(!t.startsWith("/student")||t.startsWith("/student/profile"))})}export{n as u};
